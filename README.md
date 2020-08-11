@@ -3,8 +3,8 @@ code for basic algorithms taught at a college-level data structure and algorithm
 
 references
 
-[1] Cormen, Leiserson, Rivest, Stein, Introduction to Algorithms
+[1] Cormen, T.H., Leiserson, C. E., Rivest, R. L., Stein, C., Introduction to Algorithms, Third Edition, MIT Press.
 
-[2] Yan, W. and Wu. W., Data Structures and Algorithms. Tsinghua University Press.
+[2] Yan, W. and Wu. W., Data Structures and Algorithms (C language). Tsinghua University Press.
 
 
