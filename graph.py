@@ -13,7 +13,7 @@ Includes:
     (3) Turn a directed graph into undirected by returning the undirected edges
     (4) Traverse the graph using DFS/BFS (Depth/Broadth-First-Search)
 
-@uthor: Wenqing Hu (Missouri S&T)
+@author: Wenqing Hu (Missouri S&T)
 
 """
 

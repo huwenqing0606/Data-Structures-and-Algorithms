@@ -24,7 +24,7 @@ Includes:
     (xx)    Timsort
     (xx)    Block sort
 
-@uthor: Wenqing Hu (Missouri S&T)
+@author: Wenqing Hu (Missouri S&T)
 """
 
 import numpy as np
