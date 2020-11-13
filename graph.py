@@ -8,8 +8,10 @@ Created on Thu Nov 12 14:45:43 2020
 An implementation of graph and related algoritms
 
 Includes: 
-    (1) Build a Graph 
-    (2) Traverse the Graph Using Depth/Broadth First Search
+    (1) Build a directed graph with given vertices and adjacency relations
+    (2) Build an Erdos-Renyi random graph
+    (3) Turn a directed graph into undirected by returning the undirected edges
+    (4) Traverse the graph using DFS/BFS (Depth/Broadth-First-Search)
 
 @uthor: Wenqing Hu (Missouri S&T)
 
@@ -24,6 +26,7 @@ import numpy as np
 # functions:
 #   insert_adj(self, vtx, adj_vtx) = insert an adjacent vertex adj_vtx pointed from given vertex vtx
 #   build_random(self, prob) = build a random graph on the given vertices, for each vertex, select its adjacent vertices using Bernoulli trials with probability prob
+#   directed_edges(self) = from the given directed graph, returning the directed edges
 #   undirected_edges(self) = from the given directed graph, build an undirected versionby returning the undirected edges
 class directed_graph:
     
@@ -50,6 +53,13 @@ class directed_graph:
             self.insert_adj(vtx, adj_vtx)
         return None
     
+    def directed_edges(self):
+        edges = []
+        for vtx in range(self.n_vtx):
+            for adj in self.adj_vtx[vtx]:
+                edges.append([vtx, adj])
+        return edges
+
     def undirected_edges(self):
         edges = []
         for vtx in range(self.n_vtx):
@@ -64,10 +74,14 @@ class directed_graph:
         return edges
     
 
-# traverse the graph using DFS (Depth-First-Search)
-def DFS(graph):
-    
-    return 0
+# traverse the graph using DFS (Depth-First-Search) starting from a given initial vertex
+def DFS(graph, init_vtx, visited, component):
+    visited[init_vtx] = True
+    component.append(init_vtx)
+    for adj in graph.adj_vtx[init_vtx]:
+        if visited[adj] == False:
+            DFS(graph, adj, visited, component)
+    return component, visited
 
 # traverse the graph using BFS (Broadth-First-Search)
 def BFS(graph):
@@ -77,14 +91,18 @@ def BFS(graph):
 if __name__ == "__main__":
 
     number_vertices = 10
-    prob = 0.2
+    prob = 0.3
     
     graph = directed_graph(number_vertices=number_vertices)
     graph.build_random(prob)
+    print("graph adjacency given by:", graph.adj_vtx)
     
-    print(graph.adj_vtx)
-    
+    edges=graph.directed_edges()
+    print("directed edges:", edges)       
+
     edges=graph.undirected_edges()
-        
-    print(edges)        
+    print("undirected edges:", edges)       
+    
+    component, visited = DFS(graph, 0, [False for _ in range(number_vertices)], component=[])
+    print(component, visited)
         
