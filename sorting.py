@@ -8,20 +8,20 @@ Created on Thu Nov 12 14:36:09 2020
 An implementation of various sorting algoritms
 
 Includes: 
-    (1)     Straight-insertion sort
-    (2)     Shellsort
-    (3)     Bubble sort
-    (4)     Quicksort
+    (1)     straight-insertion sort
+    (2)     shell sort
+    (3)     bubble sort
+    (4)     quick sort
     (x)     Merge-insertion sort
-    (x)     Heapsort
+    (x)     Heap sort
     (x)     Merge sort
-    (x)     Introsort
+    (x)     Intro sort
     (x)     Selection sort
     (x)     Odd–even sort
     (xx)    Cocktail shaker sort
     (xx)    Cycle sort
-    (xx)    Smoothsort
-    (xx)    Timsort
+    (xx)    Smooth sort
+    (xx)    Tim sort
     (xx)    Block sort
 
 @author: Wenqing Hu (Missouri S&T)
@@ -69,8 +69,28 @@ class comparison_sort:
                     self.seq[j+1] = x
         return None
 
-    def quick(self):
-        sorted_seq = []
+    def quick(self, low, high):
+        m = high - low
+        if m==0:
+            return None
+        else:
+            pivot = self.seq[low]
+            seq_left_pivot = []
+            seq_right_pivot = []
+            for i in range(1, m):
+                if self.seq[low + i] < pivot:
+                    seq_left_pivot.append(self.seq[low + i])
+                else:
+                    seq_right_pivot.append(self.seq[low + i])
+            k = len(seq_left_pivot)
+            for i in range(k):
+                self.seq[low + i] = seq_left_pivot[i]
+            self.seq[low + k] = pivot
+            for i in range(k+1, m):
+                self.seq[low + i] = seq_right_pivot[i-k-1]
+
+            self.quick(low, low+k)
+            self.quick(low+k+1, high)
         return None
 
 
@@ -81,7 +101,7 @@ if __name__ == "__main__":
     
     n = 100
     seq = np.arange(n)
-    method = "bubble"
+    method = "quick"
     np.random.shuffle(seq)
     print("original sequence=", seq)
     sort = comparison_sort(seq)
@@ -92,7 +112,7 @@ if __name__ == "__main__":
     elif method == "bubble":
         sort.bubble()
     elif method == "quick":
-        sort.quick()
+        sort.quick(0, n)
     else:
         print("No method corresponds!")
     print(method, "sorted sequence=", sort.seq)
