@@ -18,6 +18,7 @@ Includes:
 """
 
 import numpy as np
+from stack_and_queue import queue
 
 # build a directed graph data structure
 # parameters: 
@@ -84,14 +85,24 @@ def DFS(graph, init_vtx, visited, component):
     return component, visited
 
 # traverse the graph using BFS (Broadth-First-Search)
-def BFS(graph):
-    return 0
+def BFS(graph, init_vtx, visited):
+    q = queue([init_vtx])
+    visited[init_vtx] = True
+    component = []
+    while len(q.list) > 0:
+        vtx = q.pop()
+        component.append(vtx)
+        for adj in graph.adj_vtx[vtx]:
+            if visited[adj] == False:
+                q.push(adj)
+                visited[adj] = True
+    return component, visited
 
 
 if __name__ == "__main__":
 
     number_vertices = 10
-    prob = 0.3
+    prob = 0.1
     
     graph = directed_graph(number_vertices=number_vertices)
     graph.build_random(prob)
@@ -104,5 +115,8 @@ if __name__ == "__main__":
     print("undirected edges:", edges)       
     
     component, visited = DFS(graph, 0, [False for _ in range(number_vertices)], component=[])
+    print(component, visited)
+
+    component, visited = BFS(graph, 0, [False for _ in range(number_vertices)])
     print(component, visited)
         
