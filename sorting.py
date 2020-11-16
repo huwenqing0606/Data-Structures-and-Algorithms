@@ -12,11 +12,11 @@ Includes:
     (2)     shell sort
     (3)     bubble sort
     (4)     quick sort
+    (5)     simple-selection sort
     (x)     Merge-insertion sort
     (x)     Heap sort
     (x)     Merge sort
     (x)     Intro sort
-    (x)     Selection sort
     (x)     Odd–even sort
     (xx)    Cocktail shaker sort
     (xx)    Cycle sort
@@ -93,6 +93,15 @@ class comparison_sort:
             self.quick(low+k+1, high)
         return None
 
+    def simple_selection(self):
+        n = len(self.seq)
+        for i in range(n):
+            for j in range(i, n):
+                if self.seq[j] < self.seq[i]:
+                    temp = self.seq[i]
+                    self.seq[i] = self.seq[j]
+                    self.seq[j] = temp
+        return None
 
 
 
@@ -101,7 +110,7 @@ if __name__ == "__main__":
     
     n = 100
     seq = np.arange(n)
-    method = "quick"
+    method = "simple_selection"
     np.random.shuffle(seq)
     print("original sequence=", seq)
     sort = comparison_sort(seq)
@@ -113,6 +122,8 @@ if __name__ == "__main__":
         sort.bubble()
     elif method == "quick":
         sort.quick(0, n)
+    elif method == "simple_selection":
+        sort.simple_selection()
     else:
         print("No method corresponds!")
     print(method, "sorted sequence=", sort.seq)
