@@ -15,6 +15,23 @@ Includes:
 
 """
 
+class stack:
+    
+    def __init__(self,
+                 stack_list):
+        self.list = stack_list
+        
+    def push(self, element):
+        self.list.insert(0, element)
+        
+    def pop(self):
+        return self.list.pop(0)
+    
+    def show(self):
+        print(self.list)
+        return None
+    
+
 class queue:
     
     def __init__(self,
@@ -43,3 +60,11 @@ if __name__ == "__main__":
     queue.show()
     queue.pop()
     queue.show()
+    
+    stack_list = [0, 1, 2, 3, 4]
+    stack = stack(stack_list)
+    stack.show()
+    stack.push(0)
+    stack.show()
+    stack.pop()
+    stack.show()
