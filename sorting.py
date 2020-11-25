@@ -13,16 +13,8 @@ Includes:
     (3)     bubble sort
     (4)     quick sort
     (5)     simple-selection sort
-    (x)     Merge-insertion sort
-    (x)     Heap sort
-    (x)     Merge sort
-    (x)     Intro sort
-    (x)     Odd–even sort
-    (xx)    Cocktail shaker sort
-    (xx)    Cycle sort
-    (xx)    Smooth sort
-    (xx)    Tim sort
-    (xx)    Block sort
+    (6)     heap sort
+    (7)     merge sort
 
 @author: Wenqing Hu (Missouri S&T)
 """
@@ -103,6 +95,11 @@ class comparison_sort:
                     self.seq[j] = temp
         return None
 
+    def heap(self):
+        return None
+    
+    def merge(self):
+        return None
 
 
 
